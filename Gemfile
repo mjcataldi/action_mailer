@@ -17,6 +17,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt-ruby', '~> 3.1.7'
 gem 'bcrypt-ruby'
+gem 'dotenv'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
