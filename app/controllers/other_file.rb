@@ -1,0 +1,69 @@
+class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+
+
+  def index
+    @user = User.all.order(:last_name)
+  end
+
+  def show
+  end
+
+  def edit
+  end
+
+  def new
+  end
+
+  def create
+    @user = User.new(user_params)
+
+    if @user.save
+      session[:user_id] = @user.id
+
+      UserMailer.welcome_email(@user).deliver_now
+
+      redirect_to user_path @user
+    else
+      @errors = @user.errors
+      render :new
+    end
+
+  end
+
+  private
+
+  def update
+    user = User.find(params[:id])
+    user.update!(user_params)
+    redirect_to user
+  end
+
+  def destroy
+  end
+
+  private
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :password)
+  end
+
+end
+
+
+
+class User < ApplicationRecord
+  has_secure_password
+  has_many :tickets, class_name: "Attendance", foreign_key: :attendee_id
+
+  validates :first_name, :last_name, :email, :password, presence:true
+  validates :email, uniqueness: true
+
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
+
+end

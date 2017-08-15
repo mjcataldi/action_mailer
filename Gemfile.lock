@@ -61,6 +61,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     diff-lcs (1.2.5)
+    dotenv (2.2.1)
     erubi (1.6.1)
     execjs (2.7.0)
     faker (1.7.2)
@@ -195,6 +196,7 @@ DEPENDENCIES
   boostrap-sass
   byebug
   coffee-rails (~> 4.2)
+  dotenv
   faker
   jbuilder (~> 2.5)
   jquery-rails
