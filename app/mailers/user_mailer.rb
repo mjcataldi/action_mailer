@@ -1,6 +1,6 @@
 class UserMailer < ApplicationMailer
 
-  def welcome_user(user)
+  def welcome_email(user)
     @user = user
     @url = "http://www.google.com"
     # email_with_name = %("#{@user.name}" <#{@user.email}>)
